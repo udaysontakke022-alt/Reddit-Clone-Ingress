@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reddit-clone
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reddit-clone
+  template:
+    metadata:
+      labels:
+        app: reddit-clone
+    spec:
+      containers:
+        - name: reddit-clone
+          image: reddit-clone:v1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              memory: "512Mi"
